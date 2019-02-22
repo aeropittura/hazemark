@@ -13,3 +13,5 @@ commit. See [PROVENANCE.md](PROVENANCE.md).
 
 ## Upstream documentation
 
+# ibm-diff-priv-lib
+IBM Differential Privacy Library
