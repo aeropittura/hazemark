@@ -52,3 +52,10 @@ class TestMean(TestCase):
 
         for i in range(res.shape[0]):
             self.assertAlmostEqual(res[i], res_dp[i], delta=0.01)
+
+    def test_nan(self):
+        a = np.random.random((5, 5))
+        a[2, 2] = np.nan
+
+        res = mean(a, range=1)
+        self.assertTrue(np.isnan(res))
