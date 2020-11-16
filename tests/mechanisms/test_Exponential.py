@@ -124,6 +124,16 @@ class TestExponential(TestCase):
 
         self.assertAlmostEqual(count[1] / count[0], 2, delta=0.1)
 
+    def test_inf_utility_measure(self):
+        list_with_inf = [1, 0, float("inf")]
+
+        self.assertRaises(ValueError, self.mech, epsilon=1, utility=list_with_inf, sensitivity=1)
+        self.assertRaises(ValueError, self.mech, epsilon=1, utility=[1] * 3, measure=list_with_inf, sensitivity=1)
+
+        self.assertRaises(ValueError, self.mech, epsilon=1, utility=[-l for l in list_with_inf], sensitivity=1)
+        self.assertRaises(ValueError, self.mech, epsilon=1, utility=[1] * 3, measure=[-l for l in list_with_inf],
+                          sensitivity=1)
+
     def test_distrib_prob(self):
         epsilon = 2 * np.log(2)
         runs = 20000
