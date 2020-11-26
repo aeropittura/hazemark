@@ -3,7 +3,7 @@ from unittest import TestCase
 import numpy as np
 
 from diffprivlib.tools.quantiles import quantile
-from diffprivlib.utils import PrivacyLeakWarning, BudgetError, DiffprivlibCompatibilityWarning
+from diffprivlib.utils import PrivacyLeakWarning, BudgetError
 
 
 class TestQuantile(TestCase):
@@ -56,8 +56,8 @@ class TestQuantile(TestCase):
         a = [0, 1, 2, 3]
 
         for _ in range(100):
-            res_dp = quantile(a, 0.5, epsilon=float("inf"), bounds=(0, 3))
-            self.assertTrue(1 <= res_dp <= 2)
+            res_dp = quantile(a, 0.25, epsilon=float("inf"), bounds=(0, 3))
+            self.assertTrue(0 <= res_dp <= 1)
 
     def test_output_type(self):
         res = quantile([1, 2, 3], 0.5, bounds=(1, 3))
